@@ -6,5 +6,4 @@
    <xacro:include filename="$(find turtlebot_description)/robots/kobuki_hexagons_kinect.urdf.xacro" />
 
    <xacro:grace_arm parent="plate_top_link"/>
-
 </robot>

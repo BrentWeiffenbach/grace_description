@@ -4,7 +4,6 @@
   <arg name="gazebo_gui" default="true"/>
   <arg name="urdf_path" default="$(find grace_description)/urdf/grace.urdf.xacro"/>
   <arg name="world_file" default="worlds/empty.world"/>
-
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="paused" value="$(arg paused)"/>
@@ -18,15 +17,13 @@
   <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 0 -y 0 -z 0"
     respawn="false" output="screen" />
-
-  <include file="$(find grace_arm_config)/launch/ros_controllers.launch"/>
+  
+  <include file="$(find grace_description)/launch/ros_controllers.launch"/>
+  <remap from="joint_states" to="grace/joint_states"/>
 
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
-
-  <!-- Remap /joint_states to /grace/joint_states -->
-  <node pkg="topic_tools" type="relay" name="relay_joint_states" args="joint_states grace/joint_states" />
-
+  
   <!-- Velocity muxer -->
   <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
   <node pkg="nodelet" type="nodelet" name="cmd_vel_mux"

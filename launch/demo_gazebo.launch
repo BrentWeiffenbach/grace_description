@@ -33,6 +33,9 @@
     <arg name="gazebo_gui" value="$(arg gazebo_gui)"/>
     <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include>
+
+  <node name="relay_joint_states" pkg="topic_tools" type="relay" args="joint_states grace/joint_states" />
+
   
   <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find grace_description)/launch/move_group.launch">

@@ -34,8 +34,9 @@
     <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include>
 
-  <node name="relay_joint_states" pkg="topic_tools" type="relay" args="joint_states grace/joint_states" />
-
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">[turtlebot/joint_states, grace/joint_states]</rosparam>
+  </node>
   
   <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find grace_description)/launch/move_group.launch">
@@ -44,7 +45,7 @@
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
     <arg name="load_robot_description" value="$(arg load_robot_description)"/>
-    <arg name="remap" value="true"/>
+    <arg name="remap" value="false"/>
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->

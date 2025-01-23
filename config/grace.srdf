@@ -67,7 +67,7 @@
     </group_state>
     <group_state name="close" group="gripper_group">
         <joint name="joint_7" value="0.02" />
-        <joint name="joint_8" value="0" />
+        <joint name="joint_8" value="0.02" />
     </group_state>
     <group_state name="open" group="gripper_group">
         <joint name="joint_7" value="0" />

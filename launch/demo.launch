@@ -27,7 +27,9 @@
   -->
   <arg name="use_gui" default="false" />
   <arg name="use_rviz" default="true" />
-
+  
+  <!-- node for virtual joint location publishing -->
+  <!-- <node pkg="grace_description" type="fake_virtual_joint_publisher.py" name="fake_virtual_joint_publisher"/> -->
 
   <!-- We do not have a robot connected, so publish fake joint states -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
@@ -39,9 +41,6 @@
 
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
-
-    <!-- If needed, broadcast static tf for robot root -->
-  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster" args="0 0 0 0 0 0 odom base_footprint" />
 
   <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find grace_description)/launch/move_group.launch">

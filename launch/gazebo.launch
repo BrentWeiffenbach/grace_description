@@ -9,7 +9,7 @@
     <arg name="paused" value="$(arg paused)"/>
     <arg name="gui" value="$(arg gazebo_gui)"/>
     <arg name="world_name" value="$(arg world_file)"/>
-    <arg name="joint_states" value="turtlebot/joint_states"/>
+    <arg name="joint_states" value="mobile_base/joint_states"/>
   </include>
 
   <!-- send robot urdf to param server -->
@@ -21,7 +21,6 @@
   
   <include file="$(find grace_description)/launch/ros_controllers.launch"/>
   
-
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen"/>
   

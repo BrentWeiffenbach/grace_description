@@ -91,6 +91,12 @@ controller_list:
       - joint_7
       - joint_8
 
+  - name: moveit_pure_pursuit_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - virtual_joint
 # PID gains for each joint
 # grace_arm/gazebo_ros_control/pid_gains:
   # joint_1: { p: 2.0, i: 1.0, d: 1.0 }

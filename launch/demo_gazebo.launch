@@ -46,6 +46,9 @@
     <param name="robot_description_planning/shape_transform_cache_lookup_wait_time" value="1.0" />
   </include>
 
+  <!-- launch planar joint execution controller -->
+  <include file="$(find moveit_planar_execution)/launch/planar_execution.launch"/>
+
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(find grace_arm_config)/launch/moveit_rviz.launch">
     <arg name="rviz_config" value="$(find grace_arm_config)/launch/moveit.rviz"/>
